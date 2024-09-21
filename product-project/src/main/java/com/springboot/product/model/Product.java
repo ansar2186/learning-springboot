@@ -1,9 +1,10 @@
 package com.springboot.product.model;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
+
+import java.util.Date;
 
 import jakarta.annotation.Generated;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,20 +18,21 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(name = "prodName")
 	private String productName;
 	private String modelNumber;
 	private Double price;
 	private String color;
-	private LocalDateTime createdDate;
-	private LocalDateTime updatedDate;
+	private Date createdDate;
+	private Date updatedDate;
 
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(int id, String productName, String modelNumber, Double price, String color, LocalDateTime createdDate,
-			LocalDateTime updatedDate) {
+	public Product(int id, String productName, String modelNumber, Double price, String color, Date createdDate,
+			Date updatedDate) {
 		super();
 		this.id = id;
 		this.productName = productName;
@@ -81,19 +83,19 @@ public class Product {
 		this.color = color;
 	}
 
-	public LocalDateTime getCreatedDate() {
+	public java.util.Date getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(LocalDateTime createdDate) {
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 
-	public LocalDateTime getUpdatedDate() {
+	public Date getUpdatedDate() {
 		return updatedDate;
 	}
 
-	public void setUpdatedDate(LocalDateTime updatedDate) {
+	public void setUpdatedDate(Date updatedDate) {
 		this.updatedDate = updatedDate;
 	}
 
