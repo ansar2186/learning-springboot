@@ -3,6 +3,8 @@ package com.springboot.product.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,6 +12,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "tbl_product")
@@ -19,12 +25,20 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name = "prodName")
+	@NotEmpty(message = "Product Name must not be Empty")
 	private String productName;
+	@NotEmpty(message = "Model Number must not be empty or null")
+	//@Min(value = 2, message = "Model number mininum value must be 2")
+	//@Max(value = 4, message = "Model numder maximum value must be 4")
 	private String modelNumber;
 	private Double price;
 	private String color;
+	//@JsonFormat(pattern = "dd-mm-yyyy")
 	private Date createdDate;
 	private Date updatedDate;
+	
+	//productOwner
+	
 
 	public Product() {
 		super();
