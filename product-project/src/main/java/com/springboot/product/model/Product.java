@@ -1,6 +1,5 @@
 package com.springboot.product.model;
 
-
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -15,6 +14,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -28,25 +28,33 @@ public class Product {
 	@NotEmpty(message = "Product Name must not be Empty")
 	private String productName;
 	@NotEmpty(message = "Model Number must not be empty or null")
-	//@Min(value = 2, message = "Model number mininum value must be 2")
-	//@Max(value = 4, message = "Model numder maximum value must be 4")
+	// @Min(value = 2, message = "Model number minimum value must be 2")
+	// @Max(value = 4, message = "Model number maximum value must be 4")
+
 	private String modelNumber;
+	@NotNull
 	private Double price;
+	@NotEmpty(message = "Color is required ")
 	private String color;
-	//@JsonFormat(pattern = "dd-mm-yyyy")
+
+	// @JsonFormat(pattern = "dd-mm-yyyy")
 	private Date createdDate;
 	private Date updatedDate;
-	
-	//productOwner
-	
+
+	// productOwner
+	@NotEmpty(message = "productOwner is required ")
+	private String productOwner;
 
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(int id, String productName, String modelNumber, Double price, String color, Date createdDate,
-			Date updatedDate) {
+	public Product(int id, @NotEmpty(message = "Product Name must not be Empty") String productName,
+			@NotEmpty(message = "Model Number must not be empty or null") String modelNumber,
+			@NotEmpty(message = "Price must not be empty or null") @Min(value = 2, message = "price minimum value must be 2") @Max(value = 4, message = "price maximum value must be 4") Double price,
+			@NotEmpty(message = "Color must not be empty or null") String color, Date createdDate, Date updatedDate,
+			@NotEmpty(message = "productOwner must not be null or empty") String productOwner) {
 		super();
 		this.id = id;
 		this.productName = productName;
@@ -55,6 +63,7 @@ public class Product {
 		this.color = color;
 		this.createdDate = createdDate;
 		this.updatedDate = updatedDate;
+		this.productOwner = productOwner;
 	}
 
 	public int getId() {
@@ -97,7 +106,7 @@ public class Product {
 		this.color = color;
 	}
 
-	public java.util.Date getCreatedDate() {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
 
@@ -113,10 +122,18 @@ public class Product {
 		this.updatedDate = updatedDate;
 	}
 
+	public String getProductOwner() {
+		return productOwner;
+	}
+
+	public void setProductOwner(String productOwner) {
+		this.productOwner = productOwner;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", productName=" + productName + ", modelNumber=" + modelNumber + ", price="
-				+ price + ", color=" + color + ", createdDate=" + createdDate + ", updatedDate=" + updatedDate + "]";
+				+ price + ", color=" + color + ", createdDate=" + createdDate + ", updatedDate=" + updatedDate
+				+ ", productOwner=" + productOwner + "]";
 	}
-
 }

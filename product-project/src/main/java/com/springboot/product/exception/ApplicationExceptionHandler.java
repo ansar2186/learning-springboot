@@ -13,15 +13,21 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class ApplicationExceptionHandler {
-
-	@ExceptionHandler(ProductNotFoundException.class)
-	public Map<String, String> handleException(ProductNotFoundException exception) {
-
-		Map<String, String> map = new HashMap<>();
-		map.put("Error Message", exception.getMessage());
-
-		return map;
-	}
+//    4 / oct / 2024
+	
+	 @ResponseStatus(code = HttpStatus.NOT_FOUND)
+	  @ExceptionHandler(ProductNotFoundException.class) 
+	  public Map<String, String> handleException(ProductNotFoundException exception) {
+	  
+	  Map<String, String> map = new HashMap<>(); map.put("Error Message",
+	  exception.getMessage());
+	  
+	  return map; }
+	 
+	
+	
+	
+	
 
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
@@ -36,5 +42,16 @@ public class ApplicationExceptionHandler {
 		return map;
 
 	}
+	// Try by himself (Ahtesham Ansari  Trying the above Validation )
+	/*
+	 * @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+	 * 
+	 * @ExceptionHandler(MethodArgumentNotValidException.class) public
+	 * Map<String,String> handleVaalidation(MethodArgumentNotValidException
+	 * exception){ Map<String,String>map = new HashMap<>(); List<ObjectError> error
+	 * = exception.getBindingResult().getAllErrors(); for(ObjectError productError :
+	 * error) { map.put("Error Message", productError.getDefaultMessage()); } return
+	 * map; }
+	 */
 
 }

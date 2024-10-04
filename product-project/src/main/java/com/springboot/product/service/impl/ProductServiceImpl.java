@@ -23,6 +23,8 @@ public class ProductServiceImpl implements ProductService {
 	public Product addProduct(Product product) {
 		product.setCreatedDate(new Date());
 		// repository call save product
+	
+		
 		return repository.save(product);
 	}
 
@@ -50,6 +52,7 @@ public class ProductServiceImpl implements ProductService {
 		 * collect(collectors.tolist());
 		 */
 		repository.deleteById(id);
+		
 
 	}
 
@@ -61,11 +64,14 @@ public class ProductServiceImpl implements ProductService {
 		product2.setColor(product.getColor());
 		product2.setModelNumber(product.getModelNumber());
 		product2.setPrice(product.getPrice());
+		product2.setProductOwner(product.getProductOwner());
 		product2.setUpdatedDate(new Date());
 
 		Product updatedProduct = repository.saveAndFlush(product2);
 		return updatedProduct;
 
 	}
+	
+	//getProductbyModel method implement.
 
 }

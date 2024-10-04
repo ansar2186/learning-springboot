@@ -65,8 +65,13 @@ public class ProductController {
 
 	// update handler
 	@PutMapping("/updateProduct/{id}")
-	public Product updateProduct(@RequestBody Product product, @PathVariable int id) throws ProductNotFoundException {
+	public Product updateProduct(@RequestBody @Valid Product product, @PathVariable int id) throws ProductNotFoundException {
 		return this.service.updateProduct(product, id);
 	}
+	
+	
+	
+	
+	// getProductbyModel();
 
 }

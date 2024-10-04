@@ -16,5 +16,7 @@ public interface ProductService {
 	public void deleteProduct(int id);
 	// update Product
 	public Product updateProduct(Product product,int id) throws ProductNotFoundException;
+	
+	//getproductbyModel(String model);
 
 }
